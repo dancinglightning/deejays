@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
-gem 'rails', '~> 4.2'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+ruby '2.6.5'
+gem 'rails', '~> 5.2.4'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 
 gem "ransack"
 gem "will_paginate-bootstrap"
 
-gem 'db_fixtures_dump'  , github: "dancinglightning/db_fixtures_dump" #backup
+#gem 'db_fixtures_dump'  , github: "rubydesign/db_fixtures_dump" #backup
 
 gem "chronic"
 
@@ -18,7 +18,7 @@ group :development, :test do
   gem 'byebug'
 end
 group :development do
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
   gem 'spring'
 end
 gem 'bootstrap-sass'
@@ -36,8 +36,6 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
-  gem 'html2haml'
-  gem 'quiet_assets'
   gem 'rails_layout'
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
@@ -49,6 +47,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem "mini_racer"
 end
 group :production do
   gem 'pg'
