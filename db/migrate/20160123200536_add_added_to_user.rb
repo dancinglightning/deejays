@@ -1,4 +1,4 @@
-class AddAddedToUser < ActiveRecord::Migration
+class AddAddedToUser < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :added, :string
     add_column :users, :city,  :string

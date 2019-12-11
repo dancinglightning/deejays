@@ -6,6 +6,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'jbuilder'
+gem 'bootsnap', require: false
 
 gem "ransack"
 gem "will_paginate-bootstrap"
@@ -13,6 +14,7 @@ gem "will_paginate-bootstrap"
 #gem 'db_fixtures_dump'  , github: "rubydesign/db_fixtures_dump" #backup
 
 gem "chronic"
+gem "phantomjs"
 
 group :development, :test do
   gem 'byebug'

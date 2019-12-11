@@ -8,7 +8,7 @@ class Song < ActiveRecord::Base
   default_scope {order('date_added DESC')}
 
   belongs_to :user
-  belongs_to :main_genre ,  :class_name => 'Genre'
+  belongs_to :main_genre ,  :class_name => 'Genre' , optional: true
 
   def user_name
     if self.user_id and self.user

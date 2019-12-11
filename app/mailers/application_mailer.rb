@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "cddeejays@gmail.com"
+  default from: "raisa@villataika.fi"
   helper :application
 end

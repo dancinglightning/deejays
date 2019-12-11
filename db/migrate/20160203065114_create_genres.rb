@@ -1,4 +1,4 @@
-class CreateGenres < ActiveRecord::Migration
+class CreateGenres < ActiveRecord::Migration[4.2]
   def change
     Song.all.each do |song|
       song.update_attribute('sub_genre', song.main_genre)
