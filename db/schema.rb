@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2016_02_09_015457) do
 
-  create_table "genres", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "genres", id: :serial, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "songs", force: :cascade do |t|
+  create_table "songs", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "artist"
     t.string "album"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 2016_02_09_015457) do
     t.integer "main_genre_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

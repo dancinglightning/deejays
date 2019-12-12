@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :check_user , :only => [:show , :edit , :update ]
 
   def index
-    @q = User.search( params[:q] )
+    @q = User.ransack( params[:q] )
     @q.sorts = 'full_name asc' if @q.sorts.empty?
     @user_scope = @q.result(:distinct => true)
     @users = @user_scope.paginate( :page => params[:page], :per_page => 20 )
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = current_user unless @user
     current = current_user
     unless current == @user or current.admin
-      return redirect_to :back, :alert => "Access denied."
+      return redirect_to root_url, :alert => "Access denied."
     end
   end
 
