@@ -3,7 +3,7 @@
 #   As a user
 #   I want to delete my user profile
 #   So I can close my account
-feature 'User delete', :devise, :js do
+feature 'User delete', :js , :devise  do
 
   # Scenario: User can delete own account
   #   Given I am signed in
@@ -13,7 +13,9 @@ feature 'User delete', :devise, :js do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     visit edit_user_registration_path(user)
-    click_button 'Cancel my account'
+    accept_alert do
+      click_link 'Cancel my account'
+    end
     expect(page).to have_content I18n.t 'devise.registrations.destroyed'
   end
 

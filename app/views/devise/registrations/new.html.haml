@@ -1,7 +1,6 @@
 .row
   .col-md-4
-    %h2
-      Sign up
+    %h2     Sign up
 
     We will not share your information or try to sell you anything.
     %br
@@ -9,41 +8,27 @@
     After filing out this form, you will receive a confirmation email to confirm your email.
     When you have confirmed your email you can add more information to your profile in the
     profile section.
-
     %br
     %br
     After signing up, you will need to add a song to the database.
     %br
-
     = render "users/rules"
-
-    %br
-    %br
-
-    You will be added to our Google group for communication
-    (you can opt out of the Google group and still use this site).
-
     %br
     %br
     %br
     %br
-    %br
-    %br
-
-    %b
-      Password: we recommend not using a password you use for any other website,
-      because hackers could steal your email address and password from this site and use
-      them to try to access other sites you use.
-  .col-md-4.authform
-    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-      %h3 Sign up
-      = devise_error_messages!
+  .col-md-4
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
+        = f.input :password, required: true, |
+          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), |
+          input_html: { autocomplete: "new-password" }
+        = f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" }
       .form-group
         = f.label :full_name
         = f.text_field :full_name, :autofocus => true, class: 'form-control'
-      .form-group
-        = f.label :email
-        = f.email_field :email, class: 'form-control'
       .form-group
         = f.label :city
         = f.text_field :city, class: 'form-control'
@@ -53,10 +38,6 @@
       .form-group
         = f.label("* Country or State" )
         = f.text_field :country, class: 'form-control'
-      .form-group
-        = f.label :password
-        = f.password_field :password, class: 'form-control'
-      .form-group
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, class: 'form-control'
-      = f.submit 'Sign up', :class => 'button right'
+      .form-actions
+        = f.button :submit, "Sign up"
+    = render "devise/shared/links"

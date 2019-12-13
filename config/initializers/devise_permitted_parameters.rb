@@ -8,8 +8,8 @@ module DevisePermittedParameters
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:account_update) << :name
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:password, :password_confirmation , :full_name] )
+    devise_parameter_sanitizer.permit(:account_update , keys: [:password, :password_confirmation, :current_password,:name])
   end
 
 end

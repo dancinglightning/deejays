@@ -1,31 +1,31 @@
 .row
   .col-md-4
   .col-md-4.authform
-    %h3
-      Change password
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f|
-      = devise_error_messages!
-      .form-group
-        = f.label :email
-        = f.email_field :email, class: 'form-control'
+    %h2 Edit #{resource_name.to_s.humanize}
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :email, required: true, autofocus: true
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-          %div
+          %p
             Currently waiting confirmation for: #{resource.unconfirmed_email}
-      .form-group
-        = f.label :password
-        = f.password_field :password, :autocomplete => 'off', class: 'form-control'
-      .form-group
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, class: 'form-control'
-      %fieldset
-        %p You must enter your current password to make changes.
-        .form-group
-          = f.label :current_password
-          = f.password_field :current_password, class: 'form-control'
-      = f.submit 'Update', :class => 'button right'
+        = f.input :password,                                     |
+          hint: "leave it blank if you don't want to change it", |
+          required: false,                                       |
+          input_html: { autocomplete: "new-password" }
+        = f.input :password_confirmation,              |
+          required: false,                             |
+          input_html: { autocomplete: "new-password" }
+        = f.input :current_password,                                     |
+          hint: "we need your current password to confirm your changes", |
+          required: true,                                                |
+          input_html: { autocomplete: "current-password" }               
+      .form-actions
+        = f.button :submit, "Update"
 .row
   .col-md-4
   .col-md-4.authform
-    %h3 Cancel Account
-    %p Unhappy? We'll be sad to see you go.
-    = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right'
+    %h3 Cancel my account
+    %p
+      Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+    = link_to "Back", :back
