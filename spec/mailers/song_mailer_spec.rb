@@ -8,7 +8,7 @@ RSpec.describe SongMailer, :type => :mailer do
         expect(mail.subject.to_s).to include( "song")
       end
       it 'renders the receiver email' do
-        expect(mail.to).to eq([Rails.application.secrets.admin_email])
+        expect(mail.to).to eq([Rails.application.credentials.admin_email])
       end
     end
     describe "song details" do
