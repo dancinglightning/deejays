@@ -41,6 +41,7 @@ class SongsController < ApplicationController
         tag_given
         SongMailer.notify(@song).deliver_later
       else
+        logger.error @song.errors.inspect
         format.html { render :new }
         format.json { render json: @song.errors, status: :unprocessable_entity }
       end
@@ -55,6 +56,7 @@ class SongsController < ApplicationController
         format.html { redirect_to songs_path, notice: 'Song was successfully updated.' }
         format.json { render :show, status: :ok, location: @song }
       else
+        logger.error @song.errors.inspect
         format.html { render :edit }
         format.json { render json: @song.errors, status: :unprocessable_entity }
       end
