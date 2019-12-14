@@ -93,11 +93,13 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.smtp_settings = {
-         :address              => "smtp.gmail.com",
-         :port                 => 587,
-         :domain               => "gmail.com",
+         :address              => Rails.application.credentials.mail_server,
+         :port                 => 465,
+         :domain               => Rails.application.credentials.domain_name,
          :user_name            => Rails.application.credentials.admin_email,
          :password             => Rails.application.credentials.admin_pass,
+         :ssl                  => true,
+         :tls                  => true,
          :authentication       => :login,
          :enable_starttls_auto => true
    }
