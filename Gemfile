@@ -7,7 +7,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'jbuilder'
 gem 'bootsnap', require: false
-
+gem "pry-rails"
 gem "ransack"
 gem "will_paginate-bootstrap"
 
@@ -31,7 +31,6 @@ gem 'high_voltage'
 gem 'simple_form'
 gem 'puma'
 gem 'sucker_punch'
-gem 'devise-async'
 
 group :development do
   gem 'better_errors'
