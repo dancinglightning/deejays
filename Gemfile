@@ -10,6 +10,8 @@ gem 'bootsnap', require: false
 gem "pry-rails"
 gem "ransack"
 gem "will_paginate-bootstrap"
+gem 'invisible_captcha'
+gem 'valid_email2'
 
 #gem 'db_fixtures_dump'  , github: "rubydesign/db_fixtures_dump" #backup
 
