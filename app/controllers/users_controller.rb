@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user! , :only => :index
   before_action :check_user , :only => [:show , :edit , :update ]
+  before_action :check_admin , only: :destroy
 
   def index
     @q = User.ransack( params[:q] )
@@ -34,9 +35,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    unless current_user.admin
-      return redirect_to :back, :alert => "Access denied."
-    end
     @user = User.find(params[:id])
     @user.destroy
     if @user.destroy
