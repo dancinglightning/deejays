@@ -12,15 +12,13 @@ gem "ransack"
 gem "will_paginate-bootstrap"
 gem 'invisible_captcha'
 gem 'valid_email2'
+gem 'rack-attack'
 
 #gem 'db_fixtures_dump'  , github: "rubydesign/db_fixtures_dump" #backup
 
 gem "chronic"
 gem "phantomjs"
 
-group :development, :test do
-  gem 'byebug'
-end
 group :development do
   gem 'web-console'
   gem 'spring'
@@ -39,7 +37,6 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
-  gem 'rails_layout'
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
@@ -51,10 +48,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'sqlite3'
   gem "mini_racer"
+  gem 'byebug'
 end
 group :production do
   gem 'pg'
-  gem 'rails_12factor'
 end
 group :test do
   gem 'capybara'
