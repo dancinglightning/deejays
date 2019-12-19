@@ -21,4 +21,31 @@ module ApplicationHelper
     parts.join(".")
   end
 
+  def break_braces(string)
+    parts = string.split("(")
+    return string if parts.length == 1
+    "#{parts.first} <br/> (#{parts.last}".html_safe
+  end
+
+  def shorten( max , string)
+    return "" unless string
+    return string if string.length < max
+    words = string.split(" ")
+    ret = ""
+    until words.empty?
+      ret += get_line(max , words)
+      ret += "<br/>"
+    end
+    ret.html_safe
+  end
+  private
+
+  def get_line(max , words)
+    line = ""
+    while(!words.empty?)
+      return line if (line.length + words.first.length) > max
+      line += " #{words.shift}"
+    end
+    line
+  end
 end

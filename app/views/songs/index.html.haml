@@ -35,18 +35,18 @@
       %tbody
         - @songs.each do |song|
           %tr{:class => "line-#{cycle("1","2")}"}
-            %td.title= song.date_added.to_s
-            %td.title= song.user_name
-            %td.title= song.title
-            %td.title= song.artist
-            %td.title= song.album
-            %td.title= song.tempo
-            %td.title= song.main_genre.name if song.main_genre
-            %td.title= song.sub_genre
-            %td.title
+            %td.date= song.date_added.to_s
+            %td.user= song.user_name
+            %td.title= break_braces(song.title)
+            %td.artist= break_braces(song.artist)
+            %td.album= break_braces(song.album)
+            %td.tempo= song.tempo
+            %td.main_genre= song.main_genre.name if song.main_genre
+            %td.sub_genre= shorten(40, song.sub_genre)
+            %td.link
               = link_to( song_text(song) , song.link , :target => :_blank) unless song.link.blank?
-            %td.title
-              = song.info
+            %td.song_info
+              = shorten(40, song.info)
               -if (admin? or current_user.id == song.user_id)
                 = link_to 'Edit', edit_song_path(song)
 
