@@ -18,8 +18,17 @@ feature 'User delete', :js , :devise  do
     end
     expect(page).to have_content I18n.t 'devise.registrations.destroyed'
   end
+  scenario 'admin can delete other account' do
+    user = FactoryBot.create(:admin)
+    other = FactoryBot.create(:user)
+    login_as(user, :scope => :user)
+    visit edit_user_path(other)
+    accept_alert do
+      click_link 'Delete User'
+    end
+    expect(page).to have_content "User deleted"
+    expect(page).to have_content user.full_name
+  end
 
 end
-
 #song delete
-#other user delete

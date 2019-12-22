@@ -3,7 +3,7 @@
     -if admin?
       %h3
         Admin: Delete this user
-      = link_to "Delete", admin_destroy_user_path(@user), method: :delete , class: "btn btn-danger",
+      = link_to "Delete User", admin_destroy_user_path(@user), method: :delete , class: "btn btn-danger",
               data: { confirm: "Can't undo this. Ok?" }
   .col-md-4.authform
     %h3

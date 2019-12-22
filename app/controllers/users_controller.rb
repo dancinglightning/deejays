@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user! , :only => :index
-  before_action :check_user , :only => [:show , :edit , :update ]
-  before_action :check_admin , only: :destroy
+  before_action :check_user , :only => [:show , :edit , :update , :destroy]
 
   def index
     @q = User.ransack( params[:q] )
@@ -11,11 +10,11 @@ class UsersController < ApplicationController
   end
 
   def check_user
-    @user = User.where(:id => params[:id]).first
-    @user = current_user unless @user
-    current = current_user
-    unless current == @user or current.admin
-      return redirect_to root_url, :alert => "Access denied."
+    if( current_user.admin)
+      @user = User.where(:id => params[:id]).first
+      return redirect_to( root_url, :alert => "No such user") unless @user
+    else
+      @user = current_user
     end
   end
 
@@ -35,10 +34,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    admin = current_user.admin
+    return redirect_to( root_url, :notice => "Done. Well done") unless admin
     if @user.destroy
-        redirect_to users_url, notice: "User deleted."
+      redirect_to users_url, notice: "User deleted , #{@user.full_name}."
+    else
+      render :edit , notice: "Error deleting, #{@user.full_name}."
     end
   end
 
