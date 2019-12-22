@@ -11,8 +11,12 @@ module Features
       fill_in 'Title', :with => song.title
       fill_in 'Artist', :with => song.artist
       fill_in 'Album', :with => song.album
-      find("option[value='#{song.tempo}']").select_option unless song.tempo.blank?
-      find("option[value='#{genre.id}']").select_option
+      within "#song_tempo" do
+        find("option[value='#{song.tempo}']").select_option unless song.tempo.blank?
+      end
+      within '#song_main_genre_id' do
+        find("option[value='#{genre.id}']").select_option
+      end
       song
     end
 
