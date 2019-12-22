@@ -1,7 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
+
   factory :genre do
     sequence :name do |n|
-       "#{n}Rock"
+       "Rocks time #{n}"
      end
   end
 

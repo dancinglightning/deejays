@@ -20,7 +20,7 @@ module Features
     end
 
     def signed_user factory = :user
-      user = FactoryGirl.create(factory)
+      user = FactoryBot.create(factory)
       user.confirm
       login_as(user, :scope => :user)
       user
