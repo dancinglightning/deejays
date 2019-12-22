@@ -2,8 +2,8 @@
   = f.input :title
   = f.input :artist
   = f.input :album
-  = f.input :tempo, collection: Song.tempo_list ,include_blank: false , :label => tempo_label(@song)
-  = f.association :main_genre , :include_blank => false
+  = f.input :tempo, collection: Song.tempo_list ,include_blank: true , :label => tempo_label(@song)
+  = f.association :main_genre , :include_blank => true
   = f.input :sub_genre
   = f.input :link , :label => "Link (use full link to a sample of this song, including http://, www., etc.)"
   = f.input :info, :label => "Info (for example, is this an instrumental? Notable lyrics? Something unusual about the song? Is there a long intro or outro?"
