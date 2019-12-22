@@ -1,7 +1,10 @@
 class SongsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :check_user, only: [:show, :edit, :update, :destroy]
+
+  before_action :check_user, only: [:show, :edit, :update]
+  before_action :check_admin, only: [ :destroy]
+
   before_action :check_given , :only => [:index ]
+
   before_action :authenticate_user! , :only => [:index , :edit , :destroy]
 
   # GET /songs
