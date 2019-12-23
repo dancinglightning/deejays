@@ -1,5 +1,5 @@
 # Song adding should lead to being able to see the list
-feature 'Song add' do
+feature 'Song edit' do
 
   scenario 'edit a song as user' do
     user = edit_song
@@ -39,6 +39,23 @@ feature 'Song add' do
       "Sub genre" , "Link" , "Info"].each do |cont|
       expect(page).to have_content(cont)
     end
+  end
+
+  scenario "admin deletes song" , :js  do
+    admin = signed_user :admin
+    song = create :song
+    visit edit_song_path(song)
+    accept_alert do
+      click_link 'Delete Song'
+    end
+    expect(page).to have_content "Song deleted"
+  end
+
+  scenario "user can not delete other song"  do
+    user = signed_user :user
+    song = create :song , user: user
+    visit edit_song_path(song)
+    expect(page).not_to have_content "Delete Song"
   end
 
 end

@@ -10,12 +10,12 @@
         %br
         = f.label "Song added by: #{@song.user_name}"
         = f.label "Song added at: #{@song.added_on}"
-          -if admin?
+        -if admin?
           = f.input :date_added , :label => "Original date: #{@song.added}"
       = render 'form_fields' , { :f => f}
     %br
     -if admin?
-      = link_to "Delete", song_path(@song), method: :delete , class: "btn btn-danger",
+      = link_to "Delete Song", song_path(@song), method: :delete , class: "btn btn-danger",
               data: { confirm: "Can't undo delete. Ok?" }
     \|
     = link_to 'Cancel', songs_path

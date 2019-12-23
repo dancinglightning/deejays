@@ -27,7 +27,7 @@ feature 'User profile page', :devise do
     other = FactoryBot.create(:user, email: 'other@example.com')
     login_as(me, :scope => :user)
     visit user_path(other)
-    expect(page).to have_content 'Access denied.'
+    expect(page).to have_content me.full_name
   end
 
 end

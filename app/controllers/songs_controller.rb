@@ -1,7 +1,6 @@
 class SongsController < ApplicationController
 
-  before_action :check_user, only: [:show, :edit, :update]
-  before_action :check_admin, only: [ :destroy]
+  before_action :check_user, only: [:show, :edit, :update , :destroy]
 
   before_action :check_given , :only => [:index ]
 
@@ -70,11 +69,11 @@ class SongsController < ApplicationController
   # DELETE /songs/1.json
   def destroy
     unless current_user.admin
-      return redirect_to :back, :alert => "Access denied."
+      return redirect_back fallback: root_url , :alert => "Access denied."
     end
     @song.destroy
     respond_to do |format|
-      format.html { redirect_to songs_url, notice: 'Song was successfully destroyed.' }
+      format.html { redirect_to songs_url, notice: 'Song deleted.' }
       format.json { head :no_content }
     end
   end

@@ -31,4 +31,3 @@ feature 'User delete', :js , :devise  do
   end
 
 end
-#song delete
