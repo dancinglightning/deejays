@@ -7,7 +7,7 @@ FactoryBot.define do
     city {"City"}
     country {"Country"}
     factory :given_user do
-      given {Date.today}
+      given {Date.today - 2.months}
       count {0}
     end
     factory :admin do

@@ -15,10 +15,6 @@ img {
   @extend .img-responsive;
   margin: 0 auto;
   }
-// override for the 'Home' navigation link
-.navbar-brand {
-  font-size: inherit;
-  }
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
@@ -46,6 +42,8 @@ main {
   background-color: $primary-color;
   padding-bottom: 80px;
   width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
   margin-top: 51px; // accommodate the navbar
   }
 section {
@@ -77,7 +75,7 @@ section {
   @extend .alert-danger;
 }
 #error_explanation h2 {
-  font-size: 16px;
+  font-size: 18px;
 }
 .button-xs {
   @extend .btn;
