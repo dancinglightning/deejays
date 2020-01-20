@@ -9,10 +9,22 @@ class User < ActiveRecord::Base
   validates :country, :presence => true
   validates :city, :presence => true
 
+  validate :has_http
+  validate :is_alpha
+
   has_many :songs
   scope :admin, -> { where(admin: '1') }
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  def has_http
+    return unless self.full_name.include?("http")
+    errors.add(:full_name , "You know what")
+  end
+  def is_alpha
+    return unless self.full_name.match( /\d/)
+    errors.add(:full_name , "No digits allowed in names")
   end
 end

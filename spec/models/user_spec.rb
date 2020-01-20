@@ -21,4 +21,15 @@ describe User do
       create :admin
       expect(User.admin.first.admin).to be 1
   end
+
+  it "validates http" do
+    user = build :user , full_name: "http://some"
+    user.save
+    expect(user.errors[:full_name].to_s).to include "know"
+  end
+  it "validates numbers" do
+    user = build :user , full_name: "name 565"
+    user.save
+    expect(user.errors[:full_name].to_s).to include "digits"
+  end
 end
