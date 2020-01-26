@@ -35,13 +35,15 @@ class User < ActiveRecord::Base
     errors.add(:city , "Me thinks you may live in Belarus")
   end
   def capitals
-    [:city, :full_name, :country , :state].each do |attr|
+    [:city, :country , :state].each do |attr|
       errors.add(attr , "You have your caps lock on") if(has_caps(attr) > 2)
     end
+    errors.add(attr , "You have your caps lock on") if(has_caps(:full_name) > 3)
   end
   def has_caps(attr)
     value = self.send(attr)&.delete(" ")
     return 0 if value.blank?
+    return 2 if value == "USA"
     up = value.upcase
     total = 0
     (0 ... value.length).each {|i| total += 1 if value[i] == up[i]}

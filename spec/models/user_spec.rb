@@ -38,10 +38,18 @@ describe User do
     expect(user.errors[:city].to_s).to include "Belarus"
   end
   it "validates caps" do
-    [:city, :full_name, :country , :state].each do |attr|
+    [:city, :country , :state].each do |attr|
       user = build :user , attr => "GroSS"
       user.save
       expect(user.errors[attr].to_s).to include "lock"
     end
+  end
+  it "USA ok" do
+    user = build :user , state: "USA"
+    expect(user.save).to be true
+  end
+  it "validates CAP name" do
+    user = build :user , full_name: "Name Middle End"
+    expect(user.save).to be true
   end
 end
