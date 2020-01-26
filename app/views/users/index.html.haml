@@ -32,9 +32,12 @@
           -if admin?
             %th= sort_link @q , :given , "Latest Song Added"
             %th= sort_link @q , :used
+            %th= sort_link @q , :created_at
+            %th= sort_link @q , :confirmed_at
             %th= sort_link @q , :count
-          %th Link
-          %th Info
+          -else
+            %th Link
+            %th Info
       %tbody
         - @users.each do |user|
           %tr{:class => "line-#{cycle("1","2")}"}
@@ -49,11 +52,10 @@
             -if admin?
               %td= user.given
               %td= user.used
+              %td= user.created_at.to_date
+              %td= user.confirmed_at&.to_date
               %td= user.count
-            %td
-              = link_to( song_text(user) , user.link , :target => :_blank) if user.link
-
-            %td
-              = user.info
-              = link_to( " (edit)" , edit_user_path(user))  if admin?
+            -else
+              %td= link_to( song_text(user) , user.link , :target => :_blank) if user.link
+              %td= user.info
   = paginate @users
