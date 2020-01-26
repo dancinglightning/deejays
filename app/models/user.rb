@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     [:city, :country , :state].each do |attr|
       errors.add(attr , "You have your caps lock on") if(has_caps(attr) > 2)
     end
-    errors.add(attr , "You have your caps lock on") if(has_caps(:full_name) > 3)
+    errors.add(:full_name , "You have your caps lock on") if(has_caps(:full_name) > 3)
   end
   def has_caps(attr)
     value = self.send(attr)&.delete(" ")
