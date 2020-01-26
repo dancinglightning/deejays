@@ -52,4 +52,9 @@ describe User do
     user = build :user , full_name: "Name Middle End"
     expect(user.save).to be true
   end
+  it "validates CAP" do
+    user = build :user , full_name: "Name Middle End Name"
+    user.save
+    expect(user.errors[:full_name].to_s).to include "lock"
+  end
 end
